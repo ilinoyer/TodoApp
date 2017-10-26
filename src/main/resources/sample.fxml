@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <TabPane xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <tabs>
-      <Tab>
+      <Tab text="Add Task">
          <content>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
               <columnConstraints>
@@ -32,5 +31,6 @@
             </GridPane>
          </content>
       </Tab>
+       <Tab text="All Tasks"></Tab>
    </tabs>
 </TabPane>

@@ -1,2 +1,4 @@
-com\ilinoyer\todolist\Controller.class
+com\ilinoyer\todolist\Task.class
 com\ilinoyer\todolist\Main.class
+com\ilinoyer\todolist\Controller.class
+com\ilinoyer\todolist\TaskContainer.class
