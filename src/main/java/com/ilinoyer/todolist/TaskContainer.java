@@ -12,12 +12,14 @@ import java.util.ArrayList;
 public class TaskContainer {
 
     private ArrayList<Task> toDoTask;
+    private ArrayList<Task> inProgress;
     private ArrayList<Task> doneTask;
 
     public TaskContainer()
     {
         toDoTask = new ArrayList<Task>();
         doneTask = new ArrayList<Task>();
+        inProgress = new ArrayList<Task>();
     }
 
     public void addTask(Task newTask)
@@ -52,6 +54,12 @@ public class TaskContainer {
             out.close();
             fileOut.close();
 
+            fileOut = new FileOutputStream("tasksInProgress.ser");
+            out = new ObjectOutputStream(fileOut);
+            out.writeObject(inProgress);
+            out.close();
+            fileOut.close();
+
             System.out.printf("Serialized data is saved in /tmp/");
         }catch(IOException i) {
             i.printStackTrace();
@@ -68,6 +76,12 @@ public class TaskContainer {
             fileIn.close();
 
             fileIn = new FileInputStream("tasksDone.ser");
+            in = new ObjectInputStream(fileIn);
+            this.doneTask = (ArrayList<Task>) in.readObject();
+            in.close();
+            fileIn.close();
+
+            fileIn = new FileInputStream("taskInProgress.ser");
             in = new ObjectInputStream(fileIn);
             this.doneTask = (ArrayList<Task>) in.readObject();
             in.close();
