@@ -23,6 +23,11 @@ public class Main extends Application {
         TaskContainer container = new TaskContainer();
         container.loadData();
         container.showTasks();
+        System.out.println("/////");
+        container.addTask(new Task(new Date(2017,12,12), "Zadanie 1"));
+        container.addTask(new Task(new Date(2017,10,12), "Zadanie 2"));
+        container.showTasks();
+        container.saveData();
 
     }
 

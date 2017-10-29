@@ -40,13 +40,13 @@ public class TaskContainer {
     public void saveData()
     {
         try {
-            FileOutputStream fileOut = new FileOutputStream("/tmp/tasksToDo.ser");
+            FileOutputStream fileOut = new FileOutputStream("tasksToDo.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(toDoTask);
             out.close();
             fileOut.close();
 
-            fileOut = new FileOutputStream("/tmp/tasksDone.ser");
+            fileOut = new FileOutputStream("tasksDone.ser");
             out = new ObjectOutputStream(fileOut);
             out.writeObject(doneTask);
             out.close();
@@ -61,13 +61,13 @@ public class TaskContainer {
     public void loadData()
     {
         try {
-            FileInputStream fileIn = new FileInputStream("/tmp/tasksToDo.ser");
+            FileInputStream fileIn = new FileInputStream("tasksToDo.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             this.toDoTask = (ArrayList<Task>) in.readObject();
             in.close();
             fileIn.close();
 
-            fileIn = new FileInputStream("/tmp/tasksDone.ser");
+            fileIn = new FileInputStream("tasksDone.ser");
             in = new ObjectInputStream(fileIn);
             this.doneTask = (ArrayList<Task>) in.readObject();
             in.close();
@@ -95,6 +95,6 @@ public class TaskContainer {
     public void showTasks()
     {
         for(Task task : this.toDoTask)
-            task.toString();
+            System.out.println(task.toString());
     }
 }
