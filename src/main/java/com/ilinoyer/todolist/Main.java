@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class Main extends Application {
@@ -20,15 +21,10 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
 
-        TaskContainer container = new TaskContainer();
-        container.loadData();
-        container.showTasks();
-        System.out.println("/////");
-        //container.addTask(new Task(new Date(2017,12,12), "Zadanie 1"));
-        //container.addTask(new Task(new Date(2017,10,12), "Zadanie 2"));
-        container.showTasks();
-        container.saveData();
 
+        TaskContainer container = new TaskContainer();
+        container.addTask(new Task(new GregorianCalendar(), "fsdasda", "dasdadss"));
+        container.saveData();
     }
 
 

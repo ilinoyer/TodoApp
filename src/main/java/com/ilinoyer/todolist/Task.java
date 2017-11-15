@@ -1,6 +1,7 @@
 package com.ilinoyer.todolist;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -8,19 +9,19 @@ import java.util.Date;
  */
 
 public class Task implements Serializable {
-    private Date doUntilDate;
+    private Calendar doUntilDate;
     private String taskTopic;
     private String taskContent;
     private TaskType taskType;
 
-    public Task(Date doUntilDate, String taskContent, String taskTopic) {
+    public Task(Calendar doUntilDate, String taskContent, String taskTopic) {
         this.doUntilDate = doUntilDate;
         this.taskContent = taskContent;
         this.taskTopic = taskTopic;
         this.taskType = TaskType.TODO;
     }
 
-    public Date getDoUntilDate() {
+    public Calendar getDoUntilDate() {
         return doUntilDate;
     }
 

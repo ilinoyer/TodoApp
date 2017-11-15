@@ -27,7 +27,7 @@ public class TaskContainer {
         toDoTask.add(newTask);
     }
 
-    public void aktualizeTasks()
+    /*public void aktualizeTasks()
     {
         for(int i = 0; i < toDoTask.size(); ++i)
         {
@@ -38,29 +38,37 @@ public class TaskContainer {
             }
         }
     }
-
+*/
     public void saveData()
     {
+        String userName = System.getProperty("user.name");
+        String savePosiotion = "C:\\Users" + "\\" + userName + "\\ToDoAppData\\";
+
+        File directory = new File(savePosiotion);
+        if (! directory.exists()){
+            directory.mkdir();
+        }
+
         try {
-            FileOutputStream fileOut = new FileOutputStream("tasksToDo.ser");
+            FileOutputStream fileOut = new FileOutputStream(savePosiotion + "tasksToDo.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(toDoTask);
             out.close();
             fileOut.close();
 
-            fileOut = new FileOutputStream("tasksDone.ser");
+            fileOut = new FileOutputStream(savePosiotion + "tasksDone.ser");
             out = new ObjectOutputStream(fileOut);
             out.writeObject(doneTask);
             out.close();
             fileOut.close();
 
-            fileOut = new FileOutputStream("tasksInProgress.ser");
+            fileOut = new FileOutputStream(savePosiotion + "tasksInProgress.ser");
             out = new ObjectOutputStream(fileOut);
             out.writeObject(inProgress);
             out.close();
             fileOut.close();
 
-            System.out.printf("Serialized data is saved in /tmp/");
+            System.out.printf("Serialized data is saved in" + savePosiotion);
         }catch(IOException i) {
             i.printStackTrace();
         }
