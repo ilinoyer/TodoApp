@@ -1,10 +1,12 @@
-package com.ilinoyer.todolist;
+package com.ilinoyer;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  * Created by sojer on 27.10.2017.
@@ -15,30 +17,12 @@ public class TaskContainer {
     private ArrayList<Task> inProgress;
     private ArrayList<Task> doneTask;
 
-    public TaskContainer()
-    {
-        toDoTask = new ArrayList<Task>();
-        doneTask = new ArrayList<Task>();
-        inProgress = new ArrayList<Task>();
+    public TaskContainer(ArrayList<Task> doneTask, ArrayList<Task> inProgress, ArrayList<Task> toDoTask) {
+        this.toDoTask = toDoTask;
+        this.doneTask = doneTask;
+        this.inProgress = inProgress;
     }
 
-    public void addTask(Task newTask)
-    {
-        toDoTask.add(newTask);
-    }
-
-    /*public void aktualizeTasks()
-    {
-        for(int i = 0; i < toDoTask.size(); ++i)
-        {
-            if(toDoTask.get(i).isDone())
-            {
-                doneTask.add(toDoTask.get(i));
-                toDoTask.remove(i);
-            }
-        }
-    }
-*/
     public void saveData()
     {
         String userName = System.getProperty("user.name");

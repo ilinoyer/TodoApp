@@ -1,4 +1,4 @@
-package com.ilinoyer.todolist;
+package com.ilinoyer;
 
 /**
  * Created by sojer on 29.10.2017.

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <SplitPane dividerPositions="0.25, 0.5, 0.75" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <items>
+                <VBox minWidth="220.0">
+                    <children>
+                        <AnchorPane>
+                            <children>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Autorzy" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                                    <font>
+                                        <Font size="18.0" fx:id="x1" />
+                                    </font>
+                                </Label>
+                                <Button layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Reload" fx:id="reload_bt" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                            <children>
+                                <ListView fx:id="authorListView" prefHeight="1100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                    <children>
+                                        <Button fx:id="addAuthor" mnemonicParsing="false" text="Dodaj">
+                                            <HBox.margin>
+                                                <Insets right="15.0" />
+                                            </HBox.margin></Button>
+                                        <Button fx:id="removeAuthor" mnemonicParsing="false" text="Usuń" />
+                                        <Button fx:id="modifyAuthor" mnemonicParsing="false" text="Modyfikuj" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+                <VBox layoutX="10.0" layoutY="10.0" minWidth="220.0">
+                    <children>
+                        <AnchorPane>
+                            <children>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Czytelnicy" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                                    <font>
+                                        <Font size="18.0" fx:id="x12" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                            <children>
+                                <ListView fx:id="personListView" prefHeight="1100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                    <children>
+                                        <Button fx:id="addPerson" mnemonicParsing="false" text="Dodaj">
+                                            <HBox.margin>
+                                                <Insets right="15.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="removePerson" mnemonicParsing="false" text="Usuń" />
+                                        <Button fx:id="modifyPerson" mnemonicParsing="false" text="Modyfikuj" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+                <VBox layoutX="10.0" layoutY="10.0" minWidth="220.0">
+                    <children>
+                        <AnchorPane>
+                            <children>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Książki" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                                    <font>
+                                        <Font size="18.0" fx:id="x11" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                            <children>
+                                <ListView fx:id="bookListView" prefHeight="1100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                    <children>
+                                        <Button fx:id="addBook" mnemonicParsing="false" text="Dodaj">
+                                            <HBox.margin>
+                                                <Insets right="15.0" />
+                                            </HBox.margin></Button>
+                                        <Button fx:id="removeBook" mnemonicParsing="false" text="Usuń" />
+                                        <Button fx:id="modifyBook" mnemonicParsing="false" text="Modyfikuj" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+                <VBox layoutX="10.0" layoutY="10.0" minWidth="220.0">
+                    <children>
+                        <AnchorPane>
+                            <children>
+                                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Wypożyczenia" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+                                    <font>
+                                        <Font size="18.0" fx:id="x111" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                            <children>
+                                <ListView fx:id="rentalListView" prefHeight="1100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                            <children>
+                                <HBox alignment="CENTER" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                    <children>
+                                        <Button fx:id="addRental" mnemonicParsing="false" text="Dodaj">
+                                            <HBox.margin>
+                                                <Insets right="15.0" />
+                                            </HBox.margin></Button>
+                                        <Button fx:id="removeRental" mnemonicParsing="false" text="Usuń" />
+                                        <Button fx:id="modifyRental" mnemonicParsing="false" text="Modyfikuj" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="5.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+            </items>
+        </SplitPane>
+    </children>
+</VBox>
