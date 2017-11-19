@@ -19,9 +19,8 @@ public class TaskLoader {
 
     public void saveData()
     {
-        String userName = System.getProperty("user.name");
-        String savePath = "C:\\Users" + "\\" + userName + "\\ToDoAppData\\";
-
+        String homePath = System.getProperty("user.home");
+        String savePath = homePath + "\\ToDoAppData\\";
         File directory = new File(savePath);
         if (! directory.exists()){
             directory.mkdir();
@@ -54,8 +53,8 @@ public class TaskLoader {
 
     public void loadData()
     {
-        String userName = System.getProperty("user.name");
-        String savePath = "C:\\Users" + "\\" + userName + "\\ToDoAppData\\";
+        String homePath = System.getProperty("user.home");
+        String savePath = homePath + "\\ToDoAppData\\";
 
         try {
             FileInputStream fileIn = new FileInputStream(savePath + "tasksToDo.ser");

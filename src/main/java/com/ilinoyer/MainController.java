@@ -210,20 +210,25 @@ public class MainController implements Initializable{
         inProgress.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Task elementToMove = toDoListView.getSelectionModel().getSelectedItem();
-                taskContainer.addInPogressTask(elementToMove);
-                inProgressListObservable.add(elementToMove);
-                toDoListObservable.remove(elementToMove);
-                taskContainer.deleteToDoTask(elementToMove);
+                if(elementToMove != null)
+                {
+                    taskContainer.addInPogressTask(elementToMove);
+                    inProgressListObservable.add(elementToMove);
+                    toDoListObservable.remove(elementToMove);
+                    taskContainer.deleteToDoTask(elementToMove);
+                }
             }
         });
 
         done.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Task elementToMove = inProgressListView.getSelectionModel().getSelectedItem();
-                taskContainer.addDoneTask(elementToMove);
-                doneListObservable.add(elementToMove);
-                inProgressListObservable.remove(elementToMove);
-                taskContainer.deleteInProgressTask(elementToMove);
+                if (elementToMove != null) {
+                    taskContainer.addDoneTask(elementToMove);
+                    doneListObservable.add(elementToMove);
+                    inProgressListObservable.remove(elementToMove);
+                    taskContainer.deleteInProgressTask(elementToMove);
+                }
             }
         });
 
