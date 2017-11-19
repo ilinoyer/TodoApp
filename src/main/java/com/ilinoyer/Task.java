@@ -14,6 +14,7 @@ public class Task implements Serializable {
     private String taskTopic;
     private String taskContent;
     private TaskType taskType;
+    private static final long serialVersionUID = 4721708364015056087L;
 
     public Task(LocalDate doUntilDate, String taskContent, String taskTopic) {
         this.doUntilDate = doUntilDate;

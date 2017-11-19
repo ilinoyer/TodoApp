@@ -24,9 +24,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable{
 
-    private ArrayList<Task> toDoTask;
-    private ArrayList<Task> inProgress;
-    private ArrayList<Task> doneTask;
+    private TaskContainer taskContainer;
     private TaskLoader taskLoader;
 
     SimpleBooleanProperty isChanged = new SimpleBooleanProperty(false);
@@ -49,33 +47,32 @@ public class MainController implements Initializable{
 
     public MainController()
     {
-        toDoTask = new ArrayList<Task>();
-        inProgress = new ArrayList<Task>();
-        doneTask = new ArrayList<Task>();
-        taskLoader = new TaskLoader(doneTask, inProgress, toDoTask);
+        taskContainer = TaskContainer.getInstance();
+        taskLoader = new TaskLoader();
         taskLoader.loadData();
     }
 
     private void initToDoObservable(){
 
-        for(int i = 0; i < toDoTask.size(); i++){
-            toDoListObservable.add(toDoTask.get(i));
+        for(int i = 0; i < taskContainer.getToDoTask().size(); i++){
+            toDoListObservable.add(taskContainer.getToDoTaskByIndex(i));
         }
         toDoListView.setItems(toDoListObservable);
+        //toDoListView.refresh();
     }
 
     private void initInPorgressObservable(){
 
-        for(int i = 0; i < inProgress.size(); i++){
-            inProgressListObservable.add(inProgress.get(i));
+        for(int i = 0; i < taskContainer.getInProgress().size(); i++){
+            inProgressListObservable.add(taskContainer.getInProgressTaskByIndex(i));
         }
         inProgressListView.setItems(inProgressListObservable);
     }
 
     private void initDoneObservable(){
 
-        for(int i = 0; i < doneTask.size(); i++){
-            doneListObservable.add(doneTask.get(i));
+        for(int i = 0; i < taskContainer.getDoneTask().size(); i++){
+            doneListObservable.add(taskContainer.getDoneTaskByIndex(i));
         }
         doneListView.setItems(doneListObservable);
     }
@@ -96,8 +93,8 @@ public class MainController implements Initializable{
 
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 toDoListView.refresh();
-                //doneListView.refresh();
-                //inProgressListView.refresh();
+               // doneListView.refresh();
+               // inProgressListView.refresh();
                 isChanged.set(false);
 
             }
@@ -107,8 +104,8 @@ public class MainController implements Initializable{
             public void handle(ActionEvent event) {
                 try {
                     Task newTask = new Task();
-                    toDoTask.add(newTask);
-                    toDoListObservable.add(newTask);
+                    taskContainer.addToDoTask(newTask);
+                    //toDoListObservable.add(newTask);
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/AddTaskWindow.fxml"));
                     fxmlLoader.setController(new AddTaskController(newTask, isChanged));

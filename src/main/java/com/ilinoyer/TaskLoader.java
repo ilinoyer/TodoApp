@@ -11,14 +11,10 @@ import java.util.ArrayList;
  */
 public class TaskLoader {
 
-    private ArrayList<Task> toDoTask;
-    private ArrayList<Task> inProgress;
-    private ArrayList<Task> doneTask;
+    private TaskContainer taskContainer;
 
-    public TaskLoader(ArrayList<Task> doneTask, ArrayList<Task> inProgress, ArrayList<Task> toDoTask) {
-        this.toDoTask = toDoTask;
-        this.doneTask = doneTask;
-        this.inProgress = inProgress;
+    public TaskLoader() {
+        taskContainer = TaskContainer.getInstance();
     }
 
     public void saveData()
@@ -34,19 +30,19 @@ public class TaskLoader {
         try {
             FileOutputStream fileOut = new FileOutputStream(savePath + "tasksToDo.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(toDoTask);
+            out.writeObject(taskContainer.getToDoTask());
             out.close();
             fileOut.close();
 
             fileOut = new FileOutputStream(savePath + "tasksDone.ser");
             out = new ObjectOutputStream(fileOut);
-            out.writeObject(doneTask);
+            out.writeObject(taskContainer.getDoneTask());
             out.close();
             fileOut.close();
 
             fileOut = new FileOutputStream(savePath + "tasksInProgress.ser");
             out = new ObjectOutputStream(fileOut);
-            out.writeObject(inProgress);
+            out.writeObject(taskContainer.getInProgress());
             out.close();
             fileOut.close();
 
@@ -64,19 +60,19 @@ public class TaskLoader {
         try {
             FileInputStream fileIn = new FileInputStream(savePath + "tasksToDo.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            this.toDoTask = (ArrayList<Task>) in.readObject();
+            taskContainer.setToDoTask((ArrayList<Task>) in.readObject());
             in.close();
             fileIn.close();
 
             fileIn = new FileInputStream(savePath + "tasksDone.ser");
             in = new ObjectInputStream(fileIn);
-            this.doneTask = (ArrayList<Task>) in.readObject();
+            taskContainer.setDoneTask((ArrayList<Task>) in.readObject());
             in.close();
             fileIn.close();
 
-            fileIn = new FileInputStream(savePath + "taskInProgress.ser");
+            fileIn = new FileInputStream(savePath + "tasksInProgress.ser");
             in = new ObjectInputStream(fileIn);
-            this.doneTask = (ArrayList<Task>) in.readObject();
+            taskContainer.setInProgress((ArrayList<Task>) in.readObject());
             in.close();
             fileIn.close();
         }
@@ -84,7 +80,7 @@ public class TaskLoader {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Nie znaleziono poprzednich zapisów.", ButtonType.OK);
             alert.showAndWait();
-
+            e.printStackTrace();
             if (alert.getResult() == ButtonType.OK) {
                 alert.close();
             }
