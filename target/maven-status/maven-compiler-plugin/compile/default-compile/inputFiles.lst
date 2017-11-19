@@ -1,6 +1,8 @@
-D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\todolist\Main.java
-D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\todolist\MainController.java
-D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\todolist\TaskContainer.java
-D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\todolist\AddTaskController.java
-D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\todolist\Task.java
-D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\todolist\TaskType.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\AddTaskController.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\ModifyController.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\TaskContainer.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\TaskType.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\Main.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\MainController.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\Task.java
+D:\Programowanie\TodoApp\src\main\java\com\ilinoyer\TaskLoader.java

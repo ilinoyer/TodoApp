@@ -64,7 +64,6 @@
                               <Button fx:id="inProgressDelete" mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Delete">
 
                               </Button>
-                               <Button fx:id="modify" mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Modify" />
                               <Button fx:id="done" mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Done" />
                            </children>
                         </HBox>

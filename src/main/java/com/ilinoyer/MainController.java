@@ -15,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -59,10 +61,6 @@ public class MainController implements Initializable{
 
     @FXML
     Button done;
-
-    @FXML
-    Button modify;
-
 
 
     public MainController()
@@ -113,6 +111,31 @@ public class MainController implements Initializable{
                 toDoListObservable.remove(taskToRemove);
             }
 
+        }
+    }
+
+    private void openModifyWindow(Task taskToModify)
+    {
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/ModifyWindow.fxml"));
+            fxmlLoader.setController(new ModifyController(taskToModify, isChanged));
+            Scene scene = new Scene((Parent) fxmlLoader.load(), 400, 400);
+            Stage stage = new Stage();
+            stage.setResizable(false);
+            stage.setTitle("Modify Task");
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent event) {
+                    isChanged.set(true);
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -204,32 +227,34 @@ public class MainController implements Initializable{
             }
         });
 
-        modify.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                try {
-                    Task taskToModify = inProgressListView.getSelectionModel().getSelectedItem();
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/ModifyWindow.fxml"));
-                    fxmlLoader.setController(new ModifyController(taskToModify, isChanged));
-                    Scene scene = new Scene((Parent) fxmlLoader.load(), 400, 400);
-                    Stage stage = new Stage();
-                    stage.setResizable(false);
-                    stage.setTitle("Modify Task");
-                    stage.setScene(scene);
-                    stage.show();
+        inProgressListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    if(mouseEvent.getClickCount() == 2){
+                            Task taskToModify = inProgressListView.getSelectionModel().getSelectedItem();
+                            openModifyWindow(taskToModify);
+                    }
+            }}});
 
-                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                        public void handle(WindowEvent event) {
-                            isChanged.set(true);
-                        }
-                    });
+        toDoListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    if(mouseEvent.getClickCount() == 2){
+                        Task taskToModify = toDoListView.getSelectionModel().getSelectedItem();
+                        openModifyWindow(taskToModify);
+                    }
+                }}});
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
+        doneListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent mouseEvent) {
+                if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
+                    if(mouseEvent.getClickCount() == 2){
+                            Task taskToModify = doneListView.getSelectionModel().getSelectedItem();
+                            openModifyWindow(taskToModify);
+                    }
+                }}});
     }
 
 
