@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,6 +60,9 @@ public class MainController implements Initializable{
     @FXML
     Button done;
 
+    @FXML
+    Button modify;
+
 
 
     public MainController()
@@ -74,7 +78,6 @@ public class MainController implements Initializable{
             toDoListObservable.add(taskContainer.getToDoTaskByIndex(i));
         }
         toDoListView.setItems(toDoListObservable);
-        //toDoListView.refresh();
     }
 
     private void initInPorgressObservable(){
@@ -98,6 +101,21 @@ public class MainController implements Initializable{
         taskLoader.saveData();
     }
 
+    private void checkToDoList()
+    {
+        Task taskToRemove;
+        for(int i = 0; i < taskContainer.getToDoTask().size(); ++i)
+        {
+            if(!taskContainer.getToDoTaskByIndex(i).isValidate())
+            {
+                taskToRemove = taskContainer.getToDoTaskByIndex(i);
+                taskContainer.deleteToDoTask(taskToRemove);
+                toDoListObservable.remove(taskToRemove);
+            }
+
+        }
+    }
+
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -108,6 +126,7 @@ public class MainController implements Initializable{
         isChanged.addListener(new ChangeListener<Boolean>() {
 
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                checkToDoList();
                 toDoListView.refresh();
                 doneListView.refresh();
                 inProgressListView.refresh();
@@ -127,9 +146,17 @@ public class MainController implements Initializable{
                     fxmlLoader.setController(new AddTaskController(newTask, isChanged));
                     Scene scene = new Scene((Parent) fxmlLoader.load(), 400, 400);
                     Stage stage = new Stage();
+                    stage.setResizable(false);
                     stage.setTitle("Add Task");
                     stage.setScene(scene);
                     stage.show();
+
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        public void handle(WindowEvent event) {
+                            isChanged.set(true);
+                        }
+                    });
+
                 } catch (IOException e) {
                 }
             }
@@ -174,6 +201,33 @@ public class MainController implements Initializable{
                 doneListObservable.add(elementToMove);
                 inProgressListObservable.remove(elementToMove);
                 taskContainer.deleteInProgressTask(elementToMove);
+            }
+        });
+
+        modify.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                try {
+                    Task taskToModify = inProgressListView.getSelectionModel().getSelectedItem();
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/ModifyWindow.fxml"));
+                    fxmlLoader.setController(new ModifyController(taskToModify, isChanged));
+                    Scene scene = new Scene((Parent) fxmlLoader.load(), 400, 400);
+                    Stage stage = new Stage();
+                    stage.setResizable(false);
+                    stage.setTitle("Modify Task");
+                    stage.setScene(scene);
+                    stage.show();
+
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        public void handle(WindowEvent event) {
+                            isChanged.set(true);
+                        }
+                    });
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

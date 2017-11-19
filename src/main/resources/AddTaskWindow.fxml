@@ -37,8 +37,8 @@
       </AnchorPane>
       <AnchorPane prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" text="Add" AnchorPane.bottomAnchor="5"  AnchorPane.rightAnchor="5" AnchorPane.topAnchor="5" AnchorPane.leftAnchor="200"/>
-            <Button fx:id="cancleButton" mnemonicParsing="false" text="Cancle" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" AnchorPane.rightAnchor="200"/>
+            <Button fx:id="addButton" mnemonicParsing="false" text="Add" AnchorPane.bottomAnchor="5"  AnchorPane.rightAnchor="5" AnchorPane.topAnchor="5" minWidth="200"/>
+            <Button fx:id="cancleButton" mnemonicParsing="false" text="Cancle" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" minWidth="200" />
          </children>
       </AnchorPane>
    </children>

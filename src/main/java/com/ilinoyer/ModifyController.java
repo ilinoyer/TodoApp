@@ -2,25 +2,20 @@ package com.ilinoyer;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by sojer on 18.11.2017.
+ * Created by sojer on 19.11.2017.
  */
-public class AddTaskController implements Initializable {
+public class ModifyController implements Initializable{
 
     @FXML
     TextField subjectField;
@@ -32,59 +27,60 @@ public class AddTaskController implements Initializable {
     DatePicker untilDate;
 
     @FXML
-    Button addButton;
+    Button okButton;
 
     @FXML
     Button cancleButton;
 
     BooleanProperty isChanged;
+    Task taskToModify;
 
 
-
-    Task newTask;
-
-    public AddTaskController(Task newTask, SimpleBooleanProperty isChanged)
+    private void loadFields()
     {
-        this.newTask = newTask;
+        subjectField.setText(taskToModify.getTaskTopic());
+        contentField.setText(taskToModify.getTaskContent());
+        untilDate.setValue(taskToModify.getDoUntilDate());
+    }
+
+    public ModifyController(Task taskToModify, SimpleBooleanProperty isChanged)
+    {
+        this.taskToModify = taskToModify;
         this.isChanged = isChanged;
     }
 
-    @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        loadFields();
 
-
-        addButton.setOnAction(new EventHandler<ActionEvent>()  {
-            public void handle(ActionEvent event){
-                if(subjectField.getText() != null && contentField.getText() != null && untilDate.getValue() != null)
+        okButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                if(!subjectField.getText().isEmpty() && contentField.getText() != null && untilDate.getValue() != null)
                 {
-                    newTask.setTaskTopic(subjectField.getText());
-                    System.out.println(subjectField.getText());
-                    newTask.setTaskContent(contentField.getText());
-                    System.out.println(contentField.getText());
-                    newTask.setDoUntilDate(untilDate.getValue());
+                    taskToModify.setTaskTopic(subjectField.getText());
+                    taskToModify.setTaskContent(contentField.getText());
+                    taskToModify.setDoUntilDate(untilDate.getValue());
 
 
-                    Alert alert = new Alert(Alert.AlertType.NONE, "Task Added.", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.NONE, "Task Modified.", ButtonType.OK);
                     alert.showAndWait();
 
                     if (alert.getResult() == ButtonType.OK) {
                         alert.close();
                     }
 
-                    Stage stage = (Stage) addButton.getScene().getWindow();
+                    Stage stage = (Stage) okButton.getScene().getWindow();
                     stage.close();
                     isChanged.setValue(true);
                 }
                 else
                 {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Fill all fields to add task or press Cancle.", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Fill all fields to modify task or press Cancle.", ButtonType.OK);
                     alert.showAndWait();
 
                     if (alert.getResult() == ButtonType.OK) {
                         alert.close();
                     }
                 }
-
             }
         });
 

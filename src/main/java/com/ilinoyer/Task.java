@@ -45,6 +45,25 @@ public class Task implements Serializable {
         this.taskContent = taskContent;
     }
 
+    public boolean isValidate()
+    {
+        if ( this.taskTopic == null )
+            return false;
+        return true;
+    }
+
+    public LocalDate getDoUntilDate() {
+        return doUntilDate;
+    }
+
+    public String getTaskTopic() {
+        return taskTopic;
+    }
+
+    public String getTaskContent() {
+        return taskContent;
+    }
+
     @Override
     public String toString() {
         if(taskTopic == null)
