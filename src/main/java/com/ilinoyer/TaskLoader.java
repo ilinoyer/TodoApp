@@ -4,20 +4,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 
 /**
  * Created by sojer on 27.10.2017.
  */
-public class TaskContainer {
+public class TaskLoader {
 
     private ArrayList<Task> toDoTask;
     private ArrayList<Task> inProgress;
     private ArrayList<Task> doneTask;
 
-    public TaskContainer(ArrayList<Task> doneTask, ArrayList<Task> inProgress, ArrayList<Task> toDoTask) {
+    public TaskLoader(ArrayList<Task> doneTask, ArrayList<Task> inProgress, ArrayList<Task> toDoTask) {
         this.toDoTask = toDoTask;
         this.doneTask = doneTask;
         this.inProgress = inProgress;
@@ -26,33 +24,33 @@ public class TaskContainer {
     public void saveData()
     {
         String userName = System.getProperty("user.name");
-        String savePosiotion = "C:\\Users" + "\\" + userName + "\\ToDoAppData\\";
+        String savePath = "C:\\Users" + "\\" + userName + "\\ToDoAppData\\";
 
-        File directory = new File(savePosiotion);
+        File directory = new File(savePath);
         if (! directory.exists()){
             directory.mkdir();
         }
 
         try {
-            FileOutputStream fileOut = new FileOutputStream(savePosiotion + "tasksToDo.ser");
+            FileOutputStream fileOut = new FileOutputStream(savePath + "tasksToDo.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(toDoTask);
             out.close();
             fileOut.close();
 
-            fileOut = new FileOutputStream(savePosiotion + "tasksDone.ser");
+            fileOut = new FileOutputStream(savePath + "tasksDone.ser");
             out = new ObjectOutputStream(fileOut);
             out.writeObject(doneTask);
             out.close();
             fileOut.close();
 
-            fileOut = new FileOutputStream(savePosiotion + "tasksInProgress.ser");
+            fileOut = new FileOutputStream(savePath + "tasksInProgress.ser");
             out = new ObjectOutputStream(fileOut);
             out.writeObject(inProgress);
             out.close();
             fileOut.close();
 
-            System.out.printf("Serialized data is saved in" + savePosiotion);
+            System.out.printf("Serialized data is saved in " + savePath);
         }catch(IOException i) {
             i.printStackTrace();
         }
@@ -60,20 +58,23 @@ public class TaskContainer {
 
     public void loadData()
     {
+        String userName = System.getProperty("user.name");
+        String savePath = "C:\\Users" + "\\" + userName + "\\ToDoAppData\\";
+
         try {
-            FileInputStream fileIn = new FileInputStream("tasksToDo.ser");
+            FileInputStream fileIn = new FileInputStream(savePath + "tasksToDo.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             this.toDoTask = (ArrayList<Task>) in.readObject();
             in.close();
             fileIn.close();
 
-            fileIn = new FileInputStream("tasksDone.ser");
+            fileIn = new FileInputStream(savePath + "tasksDone.ser");
             in = new ObjectInputStream(fileIn);
             this.doneTask = (ArrayList<Task>) in.readObject();
             in.close();
             fileIn.close();
 
-            fileIn = new FileInputStream("taskInProgress.ser");
+            fileIn = new FileInputStream(savePath + "taskInProgress.ser");
             in = new ObjectInputStream(fileIn);
             this.doneTask = (ArrayList<Task>) in.readObject();
             in.close();
@@ -98,9 +99,4 @@ public class TaskContainer {
         }
     }
 
-    public void showTasks()
-    {
-        for(Task task : this.toDoTask)
-            System.out.println(task.toString());
-    }
 }

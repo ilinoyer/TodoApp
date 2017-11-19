@@ -1,5 +1,9 @@
 package com.ilinoyer;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,15 +37,21 @@ public class AddTaskController implements Initializable {
     @FXML
     Button cancleButton;
 
+    BooleanProperty isChanged;
+
+
+
     Task newTask;
 
-    public AddTaskController(Task newTask)
+    public AddTaskController(Task newTask, SimpleBooleanProperty isChanged)
     {
         this.newTask = newTask;
+        this.isChanged = isChanged;
     }
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+
 
         addButton.setOnAction(new EventHandler<ActionEvent>()  {
             public void handle(ActionEvent event){
@@ -61,6 +71,7 @@ public class AddTaskController implements Initializable {
 
                 Stage stage = (Stage) addButton.getScene().getWindow();
                 stage.close();
+                isChanged.setValue(true);
 
             }
         });

@@ -24,18 +24,9 @@ public class Task implements Serializable {
 
     public Task() {
         this.taskType = TaskType.TODO;
-        this.doUntilDate = new LocalDate();
-        this.taskContent = "";
-        this.taskTopic = "";
+        this.doUntilDate = LocalDate.now();
     }
 
-    public LocalDate getDoUntilDate() {
-        return doUntilDate;
-    }
-
-    public String getTaskContent() {
-        return taskContent;
-    }
 
     public void setDoUntilDate(LocalDate doUntilDate) {
         this.doUntilDate = doUntilDate;
@@ -51,6 +42,8 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
+        if(taskTopic == null)
+            return "";
         return taskTopic + "\nUntil: " + doUntilDate.toString();
     }
 }
