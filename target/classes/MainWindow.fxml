@@ -32,10 +32,10 @@
                      <children>
                         <HBox alignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25" prefWidth="100" text="Delete" />
+                              <Button fx:id="toDoDelete" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="Delete" />
 
                               <Button fx:id="addTask" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="Add" />
-                               <Button mnemonicParsing="false" prefHeight="25" prefWidth="100" text="In Progress" />
+                               <Button fx:id="inProgress" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="In Progress" />
                            </children>
                         </HBox>
                      </children>
@@ -61,11 +61,11 @@
                      <children>
                         <HBox alignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Delete">
+                              <Button fx:id="inProgressDelete" mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Delete">
 
                               </Button>
                                <Button mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Modify" />
-                              <Button mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Done" />
+                              <Button fx:id="done" mnemonicParsing="false" prefHeight="25" prefWidth="150" text="Done" />
                            </children>
                         </HBox>
                      </children>
@@ -89,7 +89,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="25.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="25" prefWidth="200" text="Delete" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <Button fx:id="doneDelete" mnemonicParsing="false" prefHeight="25" prefWidth="200" text="Delete" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                      </children>
                   </AnchorPane>
                </children>

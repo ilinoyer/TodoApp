@@ -28,6 +28,10 @@ public class Task implements Serializable {
         this.doUntilDate = LocalDate.now();
     }
 
+    public void setTaskType(TaskType type)
+    {
+        this.taskType = type;
+    }
 
     public void setDoUntilDate(LocalDate doUntilDate) {
         this.doUntilDate = doUntilDate;

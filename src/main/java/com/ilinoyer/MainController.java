@@ -44,6 +44,22 @@ public class MainController implements Initializable{
     @FXML
     Button addTask;
 
+    @FXML
+    Button toDoDelete;
+
+    @FXML
+    Button inProgressDelete;
+
+    @FXML
+    Button doneDelete;
+
+    @FXML
+    Button inProgress;
+
+    @FXML
+    Button done;
+
+
 
     public MainController()
     {
@@ -93,8 +109,8 @@ public class MainController implements Initializable{
 
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 toDoListView.refresh();
-               // doneListView.refresh();
-               // inProgressListView.refresh();
+                doneListView.refresh();
+                inProgressListView.refresh();
                 isChanged.set(false);
 
             }
@@ -105,7 +121,7 @@ public class MainController implements Initializable{
                 try {
                     Task newTask = new Task();
                     taskContainer.addToDoTask(newTask);
-                    //toDoListObservable.add(newTask);
+                    toDoListObservable.add(newTask);
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/AddTaskWindow.fxml"));
                     fxmlLoader.setController(new AddTaskController(newTask, isChanged));
@@ -119,8 +135,47 @@ public class MainController implements Initializable{
             }
         });
 
+        toDoDelete.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                taskContainer.deleteToDoTask(toDoListView.getSelectionModel().getSelectedItem());
+                toDoListObservable.remove(toDoListView.getSelectionModel().getSelectedItem());
+            }
+        });
+
+        inProgressDelete.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                taskContainer.deleteInProgressTask(inProgressListView.getSelectionModel().getSelectedItem());
+                inProgressListObservable.remove(inProgressListView.getSelectionModel().getSelectedItem());
+            }
+        });
+
+        doneDelete.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                taskContainer.deleteDoneTask(doneListView.getSelectionModel().getSelectedItem());
+                doneListObservable.remove(doneListView.getSelectionModel().getSelectedItem());
+            }
+        });
 
 
+        inProgress.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Task elementToMove = toDoListView.getSelectionModel().getSelectedItem();
+                taskContainer.addInPogressTask(elementToMove);
+                inProgressListObservable.add(elementToMove);
+                toDoListObservable.remove(elementToMove);
+                taskContainer.deleteToDoTask(elementToMove);
+            }
+        });
+
+        done.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Task elementToMove = inProgressListView.getSelectionModel().getSelectedItem();
+                taskContainer.addDoneTask(elementToMove);
+                doneListObservable.add(elementToMove);
+                inProgressListObservable.remove(elementToMove);
+                taskContainer.deleteInProgressTask(elementToMove);
+            }
+        });
     }
 
 

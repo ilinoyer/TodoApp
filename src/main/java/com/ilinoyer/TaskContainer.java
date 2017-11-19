@@ -62,4 +62,31 @@ public class TaskContainer {
     {
         this.toDoTask.add(newTask);
     }
+
+    public void deleteToDoTask(Task taskToDelete)
+    {
+        this.toDoTask.remove(taskToDelete);
+    }
+
+    public void addInPogressTask(Task newTask)
+    {
+        newTask.setTaskType(TaskType.INPROGRESS);
+        this.inProgress.add(newTask);
+    }
+
+    public void deleteInProgressTask(Task taskToDelete)
+    {
+        this.inProgress.remove(taskToDelete);
+    }
+
+    public void addDoneTask(Task newTask)
+    {
+        newTask.setTaskType(TaskType.DONE);
+        this.doneTask.add(newTask);
+    }
+
+    public void deleteDoneTask(Task taskToDelete)
+    {
+        this.doneTask.remove(taskToDelete);
+    }
 }
