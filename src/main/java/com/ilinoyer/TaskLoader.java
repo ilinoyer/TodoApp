@@ -22,6 +22,7 @@ public class TaskLoader {
         String homePath = System.getProperty("user.home");
         String savePath = homePath + "\\ToDoAppData\\";
         File directory = new File(savePath);
+
         if (! directory.exists()){
             directory.mkdir();
         }
@@ -29,13 +30,13 @@ public class TaskLoader {
         try {
             FileOutputStream fileOut = new FileOutputStream(savePath + "tasksToDo.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(taskContainer.getToDoTask());
+            out.writeObject(taskContainer.getToDoTasks());
             out.close();
             fileOut.close();
 
             fileOut = new FileOutputStream(savePath + "tasksDone.ser");
             out = new ObjectOutputStream(fileOut);
-            out.writeObject(taskContainer.getDoneTask());
+            out.writeObject(taskContainer.getDoneTasks());
             out.close();
             fileOut.close();
 
@@ -45,7 +46,6 @@ public class TaskLoader {
             out.close();
             fileOut.close();
 
-            System.out.printf("Serialized data is saved in " + savePath);
         }catch(IOException i) {
             i.printStackTrace();
         }
@@ -59,13 +59,13 @@ public class TaskLoader {
         try {
             FileInputStream fileIn = new FileInputStream(savePath + "tasksToDo.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            taskContainer.setToDoTask((ArrayList<Task>) in.readObject());
+            taskContainer.setToDoTasks((ArrayList<Task>) in.readObject());
             in.close();
             fileIn.close();
 
             fileIn = new FileInputStream(savePath + "tasksDone.ser");
             in = new ObjectInputStream(fileIn);
-            taskContainer.setDoneTask((ArrayList<Task>) in.readObject());
+            taskContainer.setDoneTasks((ArrayList<Task>) in.readObject());
             in.close();
             fileIn.close();
 

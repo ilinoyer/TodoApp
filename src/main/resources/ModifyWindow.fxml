@@ -31,14 +31,14 @@
             </children></AnchorPane>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <DatePicker fx:id="untilDate" layoutX="170" layoutY="50" AnchorPane.topAnchor="15" />
+                <DatePicker fx:id="deadlineDatePicker" layoutX="170" layoutY="50" AnchorPane.topAnchor="15" />
                 <Label layoutX="100" layoutY="50" text="Until:" AnchorPane.topAnchor="15" />
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="100.0" prefWidth="200.0">
             <children>
                 <Button fx:id="okButton" mnemonicParsing="false" text="OK" AnchorPane.bottomAnchor="5"  AnchorPane.rightAnchor="5" AnchorPane.topAnchor="5" minWidth="200"/>
-                <Button fx:id="cancleButton" mnemonicParsing="false" text="Cancle" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" minWidth="200" />
+                <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" AnchorPane.bottomAnchor="5" AnchorPane.leftAnchor="5" AnchorPane.topAnchor="5" minWidth="200" />
             </children>
         </AnchorPane>
     </children>

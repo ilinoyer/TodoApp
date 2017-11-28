@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +21,6 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable{
@@ -30,7 +28,7 @@ public class MainController implements Initializable{
     private TaskContainer taskContainer;
     private TaskLoader taskLoader;
 
-    SimpleBooleanProperty isChanged = new SimpleBooleanProperty(false);
+    private SimpleBooleanProperty isChanged = new SimpleBooleanProperty(false);
 
     @FXML
     private ListView<Task> toDoListView;
@@ -45,22 +43,22 @@ public class MainController implements Initializable{
     private ObservableList<Task> doneListObservable = FXCollections.observableArrayList();
 
     @FXML
-    Button addTask;
+    private Button addTaskButton;
 
     @FXML
-    Button toDoDelete;
+    private Button toDoDeleteButton;
 
     @FXML
-    Button inProgressDelete;
+    private Button inProgressDeleteButton;
 
     @FXML
-    Button doneDelete;
+    private Button doneDeleteButton;
 
     @FXML
-    Button inProgress;
+    private Button inProgressButton;
 
     @FXML
-    Button done;
+    private Button doneButton;
 
 
     public MainController()
@@ -72,13 +70,13 @@ public class MainController implements Initializable{
 
     private void initToDoObservable(){
 
-        for(int i = 0; i < taskContainer.getToDoTask().size(); i++){
+        for(int i = 0; i < taskContainer.getToDoTasks().size(); i++){
             toDoListObservable.add(taskContainer.getToDoTaskByIndex(i));
         }
         toDoListView.setItems(toDoListObservable);
     }
 
-    private void initInPorgressObservable(){
+    private void initInProgressObservable(){
 
         for(int i = 0; i < taskContainer.getInProgress().size(); i++){
             inProgressListObservable.add(taskContainer.getInProgressTaskByIndex(i));
@@ -88,7 +86,7 @@ public class MainController implements Initializable{
 
     private void initDoneObservable(){
 
-        for(int i = 0; i < taskContainer.getDoneTask().size(); i++){
+        for(int i = 0; i < taskContainer.getDoneTasks().size(); i++){
             doneListObservable.add(taskContainer.getDoneTaskByIndex(i));
         }
         doneListView.setItems(doneListObservable);
@@ -102,7 +100,7 @@ public class MainController implements Initializable{
     private void checkToDoList()
     {
         Task taskToRemove;
-        for(int i = 0; i < taskContainer.getToDoTask().size(); ++i)
+        for(int i = 0; i < taskContainer.getToDoTasks().size(); ++i)
         {
             if(!taskContainer.getToDoTaskByIndex(i).isValidate())
             {
@@ -144,7 +142,7 @@ public class MainController implements Initializable{
 
         initToDoObservable();
         initDoneObservable();
-        initInPorgressObservable();
+        initInProgressObservable();
 
         isChanged.addListener(new ChangeListener<Boolean>() {
 
@@ -158,7 +156,7 @@ public class MainController implements Initializable{
             }
         });
 
-        addTask.setOnAction(new EventHandler<ActionEvent>() {
+        addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 try {
                     Task newTask = new Task();
@@ -181,25 +179,26 @@ public class MainController implements Initializable{
                     });
 
                 } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
 
-        toDoDelete.setOnAction(new EventHandler<ActionEvent>() {
+        toDoDeleteButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 taskContainer.deleteToDoTask(toDoListView.getSelectionModel().getSelectedItem());
                 toDoListObservable.remove(toDoListView.getSelectionModel().getSelectedItem());
             }
         });
 
-        inProgressDelete.setOnAction(new EventHandler<ActionEvent>() {
+        inProgressDeleteButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 taskContainer.deleteInProgressTask(inProgressListView.getSelectionModel().getSelectedItem());
                 inProgressListObservable.remove(inProgressListView.getSelectionModel().getSelectedItem());
             }
         });
 
-        doneDelete.setOnAction(new EventHandler<ActionEvent>() {
+        doneDeleteButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 taskContainer.deleteDoneTask(doneListView.getSelectionModel().getSelectedItem());
                 doneListObservable.remove(doneListView.getSelectionModel().getSelectedItem());
@@ -207,12 +206,12 @@ public class MainController implements Initializable{
         });
 
 
-        inProgress.setOnAction(new EventHandler<ActionEvent>() {
+        inProgressButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Task elementToMove = toDoListView.getSelectionModel().getSelectedItem();
                 if(elementToMove != null)
                 {
-                    taskContainer.addInPogressTask(elementToMove);
+                    taskContainer.addInProgressTask(elementToMove);
                     inProgressListObservable.add(elementToMove);
                     toDoListObservable.remove(elementToMove);
                     taskContainer.deleteToDoTask(elementToMove);
@@ -220,7 +219,7 @@ public class MainController implements Initializable{
             }
         });
 
-        done.setOnAction(new EventHandler<ActionEvent>() {
+        doneButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Task elementToMove = inProgressListView.getSelectionModel().getSelectedItem();
                 if (elementToMove != null) {

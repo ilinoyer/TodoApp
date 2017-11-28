@@ -2,30 +2,28 @@ package com.ilinoyer;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by sojer on 26.10.2017.
  */
 
 public class Task implements Serializable {
-    private LocalDate doUntilDate;
-    private String taskTopic;
+    private LocalDate deadline;
+    private String taskSubject;
     private String taskContent;
     private TaskType taskType;
     private static final long serialVersionUID = 4721708364015056087L;
 
-    public Task(LocalDate doUntilDate, String taskContent, String taskTopic) {
-        this.doUntilDate = doUntilDate;
+    public Task(LocalDate deadline, String taskContent, String taskSubject) {
+        this.deadline = deadline;
         this.taskContent = taskContent;
-        this.taskTopic = taskTopic;
+        this.taskSubject = taskSubject;
         this.taskType = TaskType.TODO;
     }
 
     public Task() {
         this.taskType = TaskType.TODO;
-        this.doUntilDate = LocalDate.now();
+        this.deadline = LocalDate.now();
     }
 
     public void setTaskType(TaskType type)
@@ -33,12 +31,12 @@ public class Task implements Serializable {
         this.taskType = type;
     }
 
-    public void setDoUntilDate(LocalDate doUntilDate) {
-        this.doUntilDate = doUntilDate;
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
-    public void setTaskTopic(String taskTopic) {
-        this.taskTopic = taskTopic;
+    public void setTaskSubject(String taskSubject) {
+        this.taskSubject = taskSubject;
     }
 
     public void setTaskContent(String taskContent) {
@@ -47,17 +45,17 @@ public class Task implements Serializable {
 
     public boolean isValidate()
     {
-        if ( this.taskTopic == null )
+        if ( this.taskSubject == null )
             return false;
         return true;
     }
 
-    public LocalDate getDoUntilDate() {
-        return doUntilDate;
+    public LocalDate getDeadline() {
+        return deadline;
     }
 
-    public String getTaskTopic() {
-        return taskTopic;
+    public String getTaskSubject() {
+        return taskSubject;
     }
 
     public String getTaskContent() {
@@ -66,8 +64,8 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        if(taskTopic == null)
+        if(taskSubject == null)
             return "";
-        return taskTopic + "\nUntil: " + doUntilDate.toString();
+        return taskSubject + "\nUntil: " + deadline.toString();
     }
 }

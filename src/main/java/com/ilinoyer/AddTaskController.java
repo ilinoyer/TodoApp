@@ -2,18 +2,13 @@ package com.ilinoyer;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,22 +18,21 @@ import java.util.ResourceBundle;
 public class AddTaskController implements Initializable {
 
     @FXML
-    TextField subjectField;
+    private TextField subjectField;
 
     @FXML
-    TextArea contentField;
+    private TextArea contentField;
 
     @FXML
-    DatePicker untilDate;
+    private DatePicker deadlineDatePicker;
 
     @FXML
-    Button addButton;
+    private Button addButton;
 
     @FXML
-    Button cancleButton;
+    private Button cancelButton;
 
-    BooleanProperty isChanged;
-
+    private BooleanProperty isChanged;
 
 
     Task newTask;
@@ -55,14 +49,11 @@ public class AddTaskController implements Initializable {
 
         addButton.setOnAction(new EventHandler<ActionEvent>()  {
             public void handle(ActionEvent event){
-                if(subjectField.getText() != null && contentField.getText() != null && untilDate.getValue() != null)
+                if(subjectField.getText() != null && contentField.getText() != null && deadlineDatePicker.getValue() != null)
                 {
-                    newTask.setTaskTopic(subjectField.getText());
-                    System.out.println(subjectField.getText());
+                    newTask.setTaskSubject(subjectField.getText());
                     newTask.setTaskContent(contentField.getText());
-                    System.out.println(contentField.getText());
-                    newTask.setDoUntilDate(untilDate.getValue());
-
+                    newTask.setDeadline(deadlineDatePicker.getValue());
 
                     Alert alert = new Alert(Alert.AlertType.NONE, "Task Added.", ButtonType.OK);
                     alert.showAndWait();
@@ -77,7 +68,7 @@ public class AddTaskController implements Initializable {
                 }
                 else
                 {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Fill all fields to add task or press Cancle.", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Fill all fields to add task or press Cancel.", ButtonType.OK);
                     alert.showAndWait();
 
                     if (alert.getResult() == ButtonType.OK) {
@@ -88,9 +79,9 @@ public class AddTaskController implements Initializable {
             }
         });
 
-        cancleButton.setOnAction(new EventHandler<ActionEvent>() {
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Stage stage = (Stage) cancleButton.getScene().getWindow();
+                Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.close();
                 isChanged.setValue(true);
             }

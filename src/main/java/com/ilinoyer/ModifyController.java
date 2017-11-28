@@ -18,30 +18,23 @@ import java.util.ResourceBundle;
 public class ModifyController implements Initializable{
 
     @FXML
-    TextField subjectField;
+    private TextField subjectField;
 
     @FXML
-    TextArea contentField;
+    private TextArea contentField;
 
     @FXML
-    DatePicker untilDate;
+    private DatePicker deadlineDatePicker;
 
     @FXML
-    Button okButton;
+    private Button okButton;
 
     @FXML
-    Button cancleButton;
+    private Button cancelButton;
 
-    BooleanProperty isChanged;
-    Task taskToModify;
+    private BooleanProperty isChanged;
+    private Task taskToModify;
 
-
-    private void loadFields()
-    {
-        subjectField.setText(taskToModify.getTaskTopic());
-        contentField.setText(taskToModify.getTaskContent());
-        untilDate.setValue(taskToModify.getDoUntilDate());
-    }
 
     public ModifyController(Task taskToModify, SimpleBooleanProperty isChanged)
     {
@@ -49,16 +42,23 @@ public class ModifyController implements Initializable{
         this.isChanged = isChanged;
     }
 
+    private void loadFields()
+    {
+        subjectField.setText(taskToModify.getTaskSubject());
+        contentField.setText(taskToModify.getTaskContent());
+        deadlineDatePicker.setValue(taskToModify.getDeadline());
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
         loadFields();
 
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if(!subjectField.getText().isEmpty() && contentField.getText() != null && untilDate.getValue() != null)
+                if(!subjectField.getText().isEmpty() && contentField.getText() != null && deadlineDatePicker.getValue() != null)
                 {
-                    taskToModify.setTaskTopic(subjectField.getText());
+                    taskToModify.setTaskSubject(subjectField.getText());
                     taskToModify.setTaskContent(contentField.getText());
-                    taskToModify.setDoUntilDate(untilDate.getValue());
+                    taskToModify.setDeadline(deadlineDatePicker.getValue());
 
 
                     Alert alert = new Alert(Alert.AlertType.NONE, "Task Modified.", ButtonType.OK);
@@ -74,7 +74,7 @@ public class ModifyController implements Initializable{
                 }
                 else
                 {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Fill all fields to modify task or press Cancle.", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Fill all fields to modify task or press Cancel.", ButtonType.OK);
                     alert.showAndWait();
 
                     if (alert.getResult() == ButtonType.OK) {
@@ -84,9 +84,9 @@ public class ModifyController implements Initializable{
             }
         });
 
-        cancleButton.setOnAction(new EventHandler<ActionEvent>() {
+        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Stage stage = (Stage) cancleButton.getScene().getWindow();
+                Stage stage = (Stage) cancelButton.getScene().getWindow();
                 stage.close();
                 isChanged.setValue(true);
             }

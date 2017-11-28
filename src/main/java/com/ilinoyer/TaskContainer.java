@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class TaskContainer {
     private static TaskContainer ourInstance = new TaskContainer();
 
-    private ArrayList<Task> toDoTask;
+    private ArrayList<Task> toDoTasks;
     private ArrayList<Task> inProgress;
-    private ArrayList<Task> doneTask;
+    private ArrayList<Task> doneTasks;
 
     public static TaskContainer getInstance() {
         return ourInstance;
@@ -19,12 +19,12 @@ public class TaskContainer {
     private TaskContainer() {
     }
 
-    public ArrayList<Task> getToDoTask() {
-        return toDoTask;
+    public ArrayList<Task> getToDoTasks() {
+        return toDoTasks;
     }
 
-    public void setToDoTask(ArrayList<Task> toDoTask) {
-        this.toDoTask = toDoTask;
+    public void setToDoTasks(ArrayList<Task> toDoTasks) {
+        this.toDoTasks = toDoTasks;
     }
 
     public ArrayList<Task> getInProgress() {
@@ -35,22 +35,22 @@ public class TaskContainer {
         this.inProgress = inProgress;
     }
 
-    public ArrayList<Task> getDoneTask() {
-        return doneTask;
+    public ArrayList<Task> getDoneTasks() {
+        return doneTasks;
     }
 
-    public void setDoneTask(ArrayList<Task> doneTask) {
-        this.doneTask = doneTask;
+    public void setDoneTasks(ArrayList<Task> doneTasks) {
+        this.doneTasks = doneTasks;
     }
 
     public Task getToDoTaskByIndex(int index)
     {
-        return this.toDoTask.get(index);
+        return this.toDoTasks.get(index);
     }
 
     public Task getDoneTaskByIndex(int index)
     {
-        return this.doneTask.get(index);
+        return this.doneTasks.get(index);
     }
 
     public Task getInProgressTaskByIndex(int index)
@@ -60,15 +60,15 @@ public class TaskContainer {
 
     public void addToDoTask(Task newTask)
     {
-        this.toDoTask.add(newTask);
+        this.toDoTasks.add(newTask);
     }
 
     public void deleteToDoTask(Task taskToDelete)
     {
-        this.toDoTask.remove(taskToDelete);
+        this.toDoTasks.remove(taskToDelete);
     }
 
-    public void addInPogressTask(Task newTask)
+    public void addInProgressTask(Task newTask)
     {
         newTask.setTaskType(TaskType.INPROGRESS);
         this.inProgress.add(newTask);
@@ -82,11 +82,11 @@ public class TaskContainer {
     public void addDoneTask(Task newTask)
     {
         newTask.setTaskType(TaskType.DONE);
-        this.doneTask.add(newTask);
+        this.doneTasks.add(newTask);
     }
 
     public void deleteDoneTask(Task taskToDelete)
     {
-        this.doneTask.remove(taskToDelete);
+        this.doneTasks.remove(taskToDelete);
     }
 }
