@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="200.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ilinoyer.MainController">
+<VBox xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ilinoyer.MainController">
    <children>
       <SplitPane dividerPositions="0.33, 0.66" focusTraversable="true" prefHeight="500.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
         <items>
@@ -20,12 +20,13 @@
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="To Do" textAlignment="CENTER" textFill="#111111" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                            <font>
                               <Font name="System Bold" size="18.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="550.0" prefWidth="250.0">
+                  <AnchorPane>
                      <children>
-                        <ListView fx:id="toDoListView" prefHeight="540.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <ListView fx:id="toDoListView" prefHeight="2000.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                      </children>
                   </AnchorPane>
                 <AnchorPane prefHeight="25.0" prefWidth="200.0">
@@ -34,7 +35,7 @@
                            <children>
                               <Button fx:id="toDoDelete" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="Delete" />
 
-                              <Button fx:id="addTask" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="Add" />
+                                    <Button fx:id="addTask" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="Add" />
                                <Button fx:id="inProgress" mnemonicParsing="false" prefHeight="25" prefWidth="100" text="In Progress" />
                            </children>
                         </HBox>
@@ -49,12 +50,13 @@
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="In Progress" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                            <font>
                               <Font name="System Bold" size="18.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="550.0" prefWidth="250.0">
+                  <AnchorPane>
                      <children>
-                        <ListView fx:id="inProgressListView" prefHeight="540.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <ListView fx:id="inProgressListView" prefHeight="1200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="25.0" prefWidth="200.0">
@@ -78,12 +80,13 @@
                         <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Done" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                            <font>
                               <Font name="System Bold" size="18.0" />
-                           </font></Label>
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="550.0" prefWidth="250.0">
+                  <AnchorPane>
                      <children>
-                        <ListView fx:id="doneListView" prefHeight="540.0" prefWidth="240.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <ListView fx:id="doneListView" prefHeight="5000.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="25.0" prefWidth="200.0">
